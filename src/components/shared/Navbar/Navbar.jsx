@@ -1,17 +1,19 @@
 import React from "react";
-import cartIcon from '../../../assets/images/cart.png'
+import cartIcon from '../../../assets/images/cart.png';
+import logo from '../../../assets/images/logo.png'
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
 
   const items = <>
     <ul className="menu menu-horizontal px-1 items-center">
-      <li><a href="/">Home</a></li>
-      <li><a href="/contact">CONTACT US</a></li>
-      <li><a href="/deshboard">DASHBOARD</a></li>
-      <li><a href="/ourMenu">Our Menu</a></li>
-      <li><a href="/ourShop">Our Shop</a></li>
-      <li><a href="/"><img src={cartIcon} alt={cartIcon} /></a></li>
+      <li><a className="text-[#fff] uppercase active" href="/">Home</a></li>
+      <li><a className="text-[#fff] uppercase " href="/contact">CONTACT US</a></li>
+      <li><a className="text-[#fff] uppercase " href="/deshboard">DASHBOARD</a></li>
+      <li><a className="text-[#fff] uppercase " href="/ourMenu">Our Menu</a></li>
+      <li><a className="text-[#fff] uppercase " href="/ourShop">Our Shop</a></li>
+      <li><a className="text-[#fff] uppercase " href="/"><img src={cartIcon} alt={cartIcon} /></a></li>
     </ul>
   </>
 
@@ -19,12 +21,11 @@ const Navbar = () => {
   return (
     <header>
       <nav>
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-[#000]">
           <div className="flex-1">
-            <a className="btn btn-ghost normal-case text-xl">
-              BRISSTRO BOSS <br/>
-              RESTURANT 
-            </a>
+            
+             <Link to="/"> <img style={{width: "120px", height: "100px"}} src={logo} alt="logo" /></Link>
+            
           </div>
           <div className="flex-none">
             {/* <ul className="menu menu-horizontal px-1">
