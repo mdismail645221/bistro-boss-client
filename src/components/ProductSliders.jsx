@@ -3,8 +3,10 @@ import CollectionByProduct from "./CollectionByProduct";
 import SectionTitle from "./SectionTitle";
 
 // Import Swiper React components
-import { Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide,  } from 'swiper/react';
+
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -65,7 +67,7 @@ useEffect(()=> {
   return (
 
     <section className="container mx-auto section-py bg-[#f9f9f9]">
-      <SectionTitle/>
+      <SectionTitle subHeading="From 11:00am to 10:00pm" mainHeading="ORDER ONLINE" />
     <Swiper
         slidesPerView={4}
         
@@ -74,7 +76,12 @@ useEffect(()=> {
         pagination={{
           clickable: true,
         }}
+        Autoplay={{
+          delay: 500,
+          disableOnInteraction: true
+      }}
         modules={[Pagination]}
+        
         className="mySwiper"
     >
       
