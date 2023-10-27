@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PopularMenuItems from "../../PopularMenuItems";
 import SectionTitle from "../../SectionTitle";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
   const [menu, setMenu] = useState([]);
@@ -26,6 +27,9 @@ const PopularMenu = () => {
         {menu.map((item) => (
           <PopularMenuItems key={item._id} item={item}></PopularMenuItems>
         ))}
+      </div>
+      <div className="flex justify-center items-center mt-6">
+        <Link to='/' style={{borderBottomStyle: "12px solid black", borderRadius: "0px 0px 7px 7px"}}>View Full  Menu</Link>
       </div>
     </section>
   );
