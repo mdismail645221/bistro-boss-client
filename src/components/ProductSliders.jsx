@@ -85,7 +85,7 @@ useEffect(()=> {
         className="mySwiper"
     >
       
-        <div className="grid grid-cols-4 gap-3">{products.slice(1, 20).map((product) => <SwiperSlide>  <CollectionByProduct product={product} key={product._id} /> </SwiperSlide>)}</div>
+        <div className="grid grid-cols-4 gap-3">{products.slice(1, 20).map((product) => <SwiperSlide key={product._id}>  <CollectionByProduct product={product} key={product._id} /> </SwiperSlide>)}</div>
 
     
     </Swiper>

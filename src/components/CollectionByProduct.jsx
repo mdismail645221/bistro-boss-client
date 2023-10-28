@@ -2,7 +2,7 @@ import React from "react";
 import { SwiperSlide } from 'swiper/react';
 import '../assets/productSlider.css'
 const SingleProductSlide = ({ product }) => {
-  console.log(product);
+ 
   return (
     <SwiperSlide color="red" className="mb-3">
       <a href="#">

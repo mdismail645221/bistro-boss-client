@@ -15,7 +15,7 @@ const PopularMenu = () => {
       });
   }, []);
 
-  console.log({ menu });
+
 
   return (
     <section className="container mx-auto section-py">
