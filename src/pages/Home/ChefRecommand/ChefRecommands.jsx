@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SectionTitle from '../SectionTitle';
+import SectionTitle from '../../../components/SectionTitle';
 import ChefRecommand from './ChefRecommand';
 
 const ChefRecommands = () => {

@@ -1,7 +1,7 @@
 #paralaxBannerOne{
-    background-image: url('../assets/ParalaxBannerOne.css');
+    background-image: url('../assets/images/paralax-bg-banner.png');
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-
+    background-attachment: fixed;
 }
