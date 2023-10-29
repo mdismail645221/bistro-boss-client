@@ -28,7 +28,7 @@ const Testimonials = () => {
 
 
     return (
-        <section className='container mx-auto section-py'>
+        <section className='container mx-auto section-py' id='testimonial-65461'>
             
             <SectionTitle subHeading="What Our Clients Say" mainHeading="TESTIMONIALS" />
 
