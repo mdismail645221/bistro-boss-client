@@ -5,6 +5,7 @@ import PopularMenu from "../../components/shared/PopularMenu/PopularMenu";
 import CallUs from "../../components/CallUs";
 import ChefRecommands from "./ChefRecommand/ChefRecommands";
 import ParalaxBanner1 from "./ParalaxBanner1/ParalaxBanner1";
+import Testimonials from "./Testimonial/Testimonials";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <CallUs/>
       <ChefRecommands/>
       <ParalaxBanner1/>
+      <Testimonials/>
     </div>
   );
 };
