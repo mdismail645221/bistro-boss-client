@@ -1,0 +1,10 @@
+.swiper-slide {
+    text-align: center;
+    z-index: -1;
+    width: 60%;
+    margin: auto;
+}
+
+.swiper.swiper-initialized.swiper-horizontal.swiper-css-mode.mySwiper {
+    height: 300px;
+}

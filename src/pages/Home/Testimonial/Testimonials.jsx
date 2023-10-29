@@ -7,6 +7,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+// custom css 
+import './testimonial.css'
+
 // import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import SlideTestimonial from './SlideTestimonial';
@@ -36,7 +39,7 @@ const Testimonials = () => {
                     pagination={true}
                     mousewheel={true}
                     // keyboard={true}
-                    modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+                    modules={[Navigation, Pagination]}
                     className="mySwiper"
                 >
                    <div className='grid grid-cols-1'>{reviews.map(review => <SwiperSlide key={review._id}><SlideTestimonial key={review._id} review={review} /></SwiperSlide>)}</div>
