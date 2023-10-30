@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ChefRecommand = ({ product }) => {
 
     console.log({data : product})
   return (
     
-      <div className="card  bg-base-100 shadow-xl">
+      <Link to="#" className="card  bg-base-100 shadow-xl">
         <figure className="">
           <img
            
@@ -15,13 +16,14 @@ const ChefRecommand = ({ product }) => {
           />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">{product?.name}</h2>
-          <p>{product?.recipe}</p>
+          <h2 className="block text-ellipsis whitespace-nowrap overflow-hidden">{product?.name}</h2>
+          <p>Price :<span className="text-lg">{product?.price}</span></p>
+          <p className="hidden md:block">{product?.recipe.length >  5 ? `${product.recipe.slice(0, 30)}...` : product?.recipe}</p>
           <div className="card-actions">
-            <button className="btn bg-yellow">Add To Cart</button>
+            <button className="btn bg-yellow">See Details</button>
           </div>
         </div>
-      </div>
+      </Link>
     
   );
 };

@@ -70,7 +70,20 @@ useEffect(()=> {
       <SectionTitle subHeading="From 11:00am to 10:00pm" mainHeading="ORDER ONLINE" />
     <Swiper
         slidesPerView={4}
-        
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 50,
+          },
+        }}
         spaceBetween={30}
         grabCursor={true}
         pagination={{
@@ -85,7 +98,7 @@ useEffect(()=> {
         className="mySwiper"
     >
       
-        <div className="grid grid-cols-4 gap-3">{products.slice(1, 20).map((product) => <SwiperSlide key={product._id}>  <CollectionByProduct product={product} key={product._id} /> </SwiperSlide>)}</div>
+        <div>{products.slice(1, 20).map((product) => <SwiperSlide className="grid sm:grid-cols-1 md:grid-cols-4 gap-3" key={product._id}>  <CollectionByProduct product={product} key={product._id} /> </SwiperSlide>)}</div>
 
     
     </Swiper>

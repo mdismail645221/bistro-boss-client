@@ -19,38 +19,29 @@ const Navbar = () => {
 
 
   return (
-    <header>
-      <nav>
-        <div className="navbar bg-[#000]">
-          <div className="flex-1">
-            
-             <Link to="/"> <img style={{width: "120px", height: "100px"}} src={logo} alt="logo" /></Link>
-            
-          </div>
-          <div className="flex-none">
-            {/* <ul className="menu menu-horizontal px-1">
-              <li>
-                <a>Link</a>
-              </li>
-              <li>
-                <details>
-                  <summary>Parent</summary>
-                  <ul className="p-2 bg-base-100">
-                    <li>
-                      <a>Link 1</a>
-                    </li>
-                    <li>
-                      <a>Link 2</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-            </ul> */}
-            {items}
-          </div>
-        </div>
-      </nav>
-    </header>
+<div className="navbar bg-base-100">
+  <div className="flex-1">
+    <a className="btn btn-ghost normal-case text-xl">
+      <img src={logo} className="w-[70] h-[70ox]" alt="logo" />
+    </a>
+  </div>
+  <div className="flex-none">
+    <ul className="menu menu-horizontal px-1">
+      <li><a>Link</a></li>
+      <li>
+        <details>
+          <summary>
+            Parent
+          </summary>
+          <ul className="p-2 bg-base-100">
+            <li><a>Link 1</a></li>
+            <li><a>Link 2</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
   );
 };
 
