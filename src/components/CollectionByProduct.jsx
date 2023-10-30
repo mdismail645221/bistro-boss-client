@@ -1,10 +1,10 @@
 import React from "react";
-import { SwiperSlide } from 'swiper/react';
+
 import '../assets/productSlider.css'
 const SingleProductSlide = ({ product }) => {
  
   return (
-    <SwiperSlide color="red" className="mb-3">
+    
       <a href="#">
         <div className="card shadow-md my-6">
           <img className="w-full h-[250px] object-cover" src={product.image} alt={product.name} />
@@ -15,7 +15,7 @@ const SingleProductSlide = ({ product }) => {
           </div>
         </div>
       </a>
-    </SwiperSlide>
+    
   );
 };
 

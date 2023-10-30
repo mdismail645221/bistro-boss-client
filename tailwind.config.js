@@ -23,7 +23,7 @@ export default {
       'gray-light': '#d3dce6',
     },
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
+      sans: ['Cinzel', 'serif'],
       serif: ['Merriweather', 'serif'],
     },
     extend: {
@@ -33,8 +33,48 @@ export default {
       },
       borderRadius: {
         '4xl': '2rem',
-      }
-    }
+      },
+      mytheme: {
+          
+        "primary": "red",
+                 
+        "secondary": "#f000b8",
+                 
+        "accent": "#1dcdbc",
+                 
+        "neutral": "#2b3440",
+                 
+        "base-100": "#ffffff",
+                 
+        "info": "#3abff8",
+                 
+        "success": "#36d399",
+                 
+        "warning": "#fbbd23",
+                 
+        "error": "#f87272",
+                 },
+    },
+    mytheme: {
+          
+      "primary": "#FF9130",
+               
+      "secondary": "#FF9130",
+               
+      "accent": "#FF9130",
+               
+      "neutral": "#1b161d",
+               
+      "base-100": "#484351",
+               
+      "info": "#96a8e8",
+               
+      "success": "#69ecba",
+               
+      "warning": "#b07b11",
+               
+      "error": "#f94848",
+               },
   },
   plugins: [require("daisyui")],
 
