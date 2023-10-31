@@ -1,14 +1,15 @@
 import React from "react";
 
-import bannerOne from '../../../assets/images/menu/banner3.jpg'
+
+
+
 
 const ParalaxCoverBanners = ({data}) => {
+ 
   return (
     <div
-      className="hero min-h-screen"
-      style={{
-        backgroundImage: `url(${data?.imgUrl ? data.imgUrl : `${bannerOne}`})`
-      }}
+      className="hero h-96 md:min-h-screen"
+      style={{backgroundImage: `url(${data?.imgUrl})`}}
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
