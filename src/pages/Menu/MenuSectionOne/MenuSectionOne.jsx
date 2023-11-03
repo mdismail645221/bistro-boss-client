@@ -12,7 +12,7 @@ const MenuSectionOne = () => {
     fetch("menu.json")
       .then((res) => res.json())
       .then((data) => {
-        const PopularMenu = data.slice(6, 12);
+        const PopularMenu = data.filter(item => item.category === "popular");
         setMenu(PopularMenu);
       });
   }, []);

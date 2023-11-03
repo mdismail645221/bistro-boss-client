@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react";
 import PopularMenuItems from "../../PopularMenuItems";
 import SectionTitle from "../../SectionTitle";
 import { Link } from "react-router-dom";
+import useMenu from "../../../hooks/useMenu";
 
 const PopularMenu = () => {
-  const [menu, setMenu] = useState([]);
+  const [menu, loading] = useMenu();
+  const popular = menu.filter(item => item.category === "popular");
 
-  useEffect(() => {
-    fetch("menu.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const PopularMenu = data.slice(0, 6);
-        setMenu(PopularMenu);
-      });
-  }, []);
+
+
+ if(loading){
+  return <div>Loading .... </div>
+ }
 
 
 
   return (
     <section className="container mx-auto section-py">
      <SectionTitle
-        subHeading="Check it out"
+        subHeading="Popular Items"
         mainHeading="FROM OUR MENU"
      />
       <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-        {menu.map((item) => (
+        {popular.map((item) => (
           <PopularMenuItems key={item._id} item={item}></PopularMenuItems>
         ))}
       </div>
