@@ -1,6 +1,7 @@
 import React from "react";
-import ParalaxCoverBanners from "../../../components/shared/ParalaxCoverBanner/ParalaxCoverBanners";
+// import ParalaxCoverBanners from "../../../components/shared/ParalaxCoverBanner/ParalaxCoverBanners";
 import img from '../../../assets/menu/banner3.jpg';
+import ImgTextOverlay from "../../../components/shared/ImgTextOverlay/ImgTextOverlay";
 
 const TopMenuSection = () => {
   const data = {
@@ -17,7 +18,7 @@ const TopMenuSection = () => {
   return (
     <section>
       <div>
-        <ParalaxCoverBanners data={data} />
+        <ImgTextOverlay imgUrl={data.imgUrl} btnLink={"/"} heading={data.heading} subtag={data.subHeading} />
       </div>
     </section>
   );

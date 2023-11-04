@@ -70,7 +70,7 @@ const ProductSliders = () => {
           slidesPerView={4}
           breakpoints={{
             100: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 5,
             },
             640: {
