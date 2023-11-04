@@ -1,11 +1,11 @@
 import React from 'react';
 import ImgTextOverlay from '../../../components/shared/ImgTextOverlay/ImgTextOverlay';
-import pizzaImg from '../../../assets/menu/pizza-bg.jpg'
+import soupImg from '../../../assets/menu/soup-bg.jpg'
 
-const PizzaPalalux = () => {
+const SoupParalux = () => {
     const data = {
-        imgUrl: pizzaImg,
-        heading: "Our PIZZA",
+        imgUrl: soupImg,
+        heading: "SOUPS",
         subHeading: "Would you like to try a dish?",
       };
     
@@ -18,4 +18,4 @@ const PizzaPalalux = () => {
       );
 };
 
-export default PizzaPalalux;
+export default SoupParalux;
