@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const ChefRecommand = ({ product }) => {
 
-    console.log({data : product})
   return (
     
       <Link to="#" className="card  bg-base-100 shadow-xl">
