@@ -3,7 +3,6 @@ import PopularMenuItems from "./PopularMenuItems";
 import { Link } from "react-router-dom";
 
 const MenuCategory = ({ items }) => {
-  console.log({ items });
   return (
     <section>
       <div className="grid grid-cols-2 gap-3">

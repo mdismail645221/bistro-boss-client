@@ -5,9 +5,15 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useMenu from "../../../hooks/useMenu";
 import ProductTab from "../../../components/ProductTab";
+import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const OurShop = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const categoires = ["popular", "dessert", "pizza", "salad", "soup"];
+  const { category } = useParams();
+  const initialValue = categoires.indexOf(category);
+
+  const [tabIndex, setTabIndex] = useState(initialValue);
   const [menu, loading] = useMenu();
   const popular = menu.filter((data) => data.category === "popular");
   const dessert = menu.filter((data) => data.category === "dessert");
@@ -17,6 +23,11 @@ const OurShop = () => {
 
   return (
     <section>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home | Shop</title>
+      </Helmet>
+
       <div>
         <ImgTextOverlay
           imgUrl={shopImg}
@@ -33,17 +44,24 @@ const OurShop = () => {
               onSelect={(index) => setTabIndex(index)}
             >
               <TabList>
+                <Tab>popular</Tab>
+                <Tab>dessert</Tab>
                 <Tab>salad</Tab>
                 <Tab>pizza</Tab>
                 <Tab>soup</Tab>
-                <Tab>dessert</Tab>
               </TabList>
 
-              {/* salad tabs info start*/}
+              {/* popular tabs info start*/}
               <TabPanel>
-                <ProductTab product={salad} key={salad._id} />
+                <ProductTab product={popular} key={popular._id} />
               </TabPanel>
-              {/* salad tabs info end*/}
+              {/* popular tabs info end*/}
+
+              {/* dessert tabs info start*/}
+              <TabPanel>
+                <ProductTab product={dessert} key={dessert._id} />
+              </TabPanel>
+              {/* dessert tabs info start*/}
 
               {/* pizza tabs info start*/}
               <TabPanel>
@@ -51,17 +69,17 @@ const OurShop = () => {
               </TabPanel>
               {/* pizza tabs info end*/}
 
+              {/* salad tabs info start*/}
+              <TabPanel>
+                <ProductTab product={salad} key={salad._id} />
+              </TabPanel>
+              {/* salad tabs info end*/}
+
               {/* soup tabs info start*/}
               <TabPanel>
                 <ProductTab product={soup} key={soup._id} />
               </TabPanel>
               {/* soup tabs info start*/}
-
-              {/* dessert tabs info start*/}
-              <TabPanel>
-                <ProductTab product={dessert} key={dessert._id} />
-              </TabPanel>
-              {/* dessert tabs info start*/}
             </Tabs>
           </div>
         </section>
