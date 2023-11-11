@@ -7,6 +7,7 @@ import useMenu from "../../../hooks/useMenu";
 import ProductTab from "../../../components/ProductTab";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Loading from "../../../components/Loading";
 
 const OurShop = () => {
   const categoires = ["popular", "dessert", "pizza", "salad", "soup"];
@@ -53,31 +54,51 @@ const OurShop = () => {
 
               {/* popular tabs info start*/}
               <TabPanel>
-                <ProductTab product={popular} key={popular._id} />
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <ProductTab product={popular} key={popular._id} />
+                )}
               </TabPanel>
               {/* popular tabs info end*/}
 
               {/* dessert tabs info start*/}
               <TabPanel>
-                <ProductTab product={dessert} key={dessert._id} />
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <ProductTab product={dessert} key={dessert._id} />
+                )}
               </TabPanel>
               {/* dessert tabs info start*/}
 
               {/* pizza tabs info start*/}
               <TabPanel>
-                <ProductTab product={pizza} key={pizza._id} />
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <ProductTab product={pizza} key={pizza._id} />
+                )}
               </TabPanel>
               {/* pizza tabs info end*/}
 
               {/* salad tabs info start*/}
               <TabPanel>
-                <ProductTab product={salad} key={salad._id} />
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <ProductTab product={salad} key={salad._id} />
+                )}
               </TabPanel>
               {/* salad tabs info end*/}
 
               {/* soup tabs info start*/}
               <TabPanel>
-                <ProductTab product={soup} key={soup._id} />
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <ProductTab product={soup} key={soup._id} />
+                )}
               </TabPanel>
               {/* soup tabs info start*/}
             </Tabs>
