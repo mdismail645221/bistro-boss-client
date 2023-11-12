@@ -7,12 +7,15 @@ import "@smastrom/react-rating/style.css";
 const SlideTestimonial = ({ review }) => {
   const [rating, setRating] = useState(review.rating);
 
+
+  // console.dir(Number)
+
   return (
     <SwiperSlide>
       <div className="flex justify-center items-center my-5">
         <Rating
           style={{ maxWidth: 250 }}
-          value={rating}
+          value={parseInt(rating)}
           setRating={setRating}
         />
       </div>
@@ -34,7 +37,7 @@ const SlideTestimonial = ({ review }) => {
           />
         </svg>
       </div>
-      <p>{review.details}</p>
+      <p>{review.reviewText}</p>
       <h3 className="text-2xl uppercase text-[#d99904] my-4">{review.name}</h3>
     </SwiperSlide>
   );

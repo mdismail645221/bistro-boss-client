@@ -19,7 +19,7 @@ const Testimonials = () => {
     const [reviews, setReview] = useState([])
 
     useEffect(()=> {
-        fetch('reviews.json')
+        fetch('http://localhost:5000/review')
         .then(res => res.json())
         .then(data => setReview(data))
     }, [])
@@ -42,7 +42,7 @@ const Testimonials = () => {
                     modules={[Navigation, Pagination]}
                     className="mySwiper"
                 >
-                   <div className='grid grid-cols-1'>{reviews.map(review => <SwiperSlide key={review._id}><SlideTestimonial key={review._id} review={review} /></SwiperSlide>)}</div>
+                   <div className='grid grid-cols-1'>{reviews.slice(0, 15).map(review => <SwiperSlide key={review._id}><SlideTestimonial key={review._id} review={review} /></SwiperSlide>)}</div>
                 </Swiper>
             </div>
 
