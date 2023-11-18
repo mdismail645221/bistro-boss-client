@@ -6,8 +6,12 @@ import CallUs from "../../components/CallUs";
 import ChefRecommands from "./ChefRecommand/ChefRecommands";
 import ParalaxBanner1 from "./ParalaxBanner1/ParalaxBanner1";
 import Testimonials from "./Testimonial/Testimonials";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Home = () => {
+  const user = useContext(AuthContext);
+  console.log({user})
   return (
     <div>
       <Slideshow/>
