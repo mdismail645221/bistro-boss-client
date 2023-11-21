@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import fetchedImgSrc from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import authLoingImg from "../../assets/others/authentication2.png";
+import { useForm } from "react-hook-form"
+
 
 import {
   loadCaptchaEnginge,
@@ -12,31 +14,17 @@ import { Link } from "react-router-dom";
 import RegisterSignInTitle from "../../components/RegisterSignInTitle";
 
 const RegisterForm = () => {
-  const captchaText = useRef(null);
-  const [disable, setDisable] = useState(true);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log({ email, password });
-  };
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-
-  function handleValidatedCaptcha() {
-    const user_captcha_value = captchaText.current.value;
-    if (validateCaptcha(user_captcha_value) == true) {
-      captchaText.current.value = "";
-      setDisable(false);
-    } else {
-      setDisable(true);
-      alert("Captcha Does Not Match");
-    }
-  }
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm()
+    
+      const onSubmit = (data) => {
+        console.log(data)
+      }
+ 
   return (
     <section
       className=""
@@ -59,30 +47,47 @@ const RegisterForm = () => {
             {/* form box */}
             <div className="card  shadow-2xl bg-base-100 w-1/2">
              <RegisterSignInTitle title="Register" />
-              <form onSubmit={handleSubmit} className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                 {/* name input form */}
+                 <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name<sup className="text-[red] text-[15px]">*</sup></span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Write your name"
+                    className="input input-bordered"
+                    {...register("name")}
+                    required
+                  />
+                </div>
+                {/* email input form */}
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text">Email <sup className="text-[red] text-[15px]">*</sup></span>
                   </label>
                   <input
                     type="email"
                     name="email"
-                    placeholder="email"
+                    placeholder="Write your email"
                     className="input input-bordered"
+                    {...register("email")}
                     required
                   />
                 </div>
-
+                {/* password input form */}
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text">Password <sup className="text-[red] text-[15px]">*</sup></span>
                   </label>
                   <input
                     type="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Write your password"
                     className="input input-bordered"
                     required
+                    {...register("password")}
                   />
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
@@ -90,35 +95,14 @@ const RegisterForm = () => {
                     </a>
                   </label>
                 </div>
-                {/* capcha load  */}
-                <div className="form-control flex">
-                  <label className="label">
-                    <LoadCanvasTemplate />
-                  </label>
-
-                  <div className="flex items-center justify-between gap-1">
-                    <input
-                      type="text"
-                      ref={captchaText}
-                      placeholder="Write Captcha text"
-                      className="input input-bordered flex-1"
-                      required
-                    />
-                    <button
-                      onClick={handleValidatedCaptcha}
-                      className="btn btn-primary"
-                    >
-                      Validate
-                    </button>
-                  </div>
-                </div>
+              
 
                 <div className="form-control mt-6">
                   <input
                     className="btn btn-primary"
                     type="submit"
                     value="LOGIN"
-                    disabled={disable}
+                    disabled={false}
                   />
                 </div>
               </form>
