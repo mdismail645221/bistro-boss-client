@@ -14,6 +14,7 @@ const Navbar = () => {
       <li><a className="text-[#000] uppercase " href="/menu">Our Menu</a></li>
       <li><a className="text-[#000] uppercase " href="/ourShop/popular">Our Shop</a></li>
       <li><a className="text-[#000] uppercase " href="/login">Login</a></li>
+      <li><a className="text-[#000] uppercase " href="/register">Register</a></li>
       <li><a className="text-[#000] uppercase " href="/"><img src={cartIcon} alt={cartIcon} /></a></li>
     </ul>
   </>

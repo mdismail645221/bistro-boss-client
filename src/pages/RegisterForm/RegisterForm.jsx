@@ -8,10 +8,10 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import RegisterSignInTitle from "../../components/RegisterSignInTitle";
 import { Link } from "react-router-dom";
+import RegisterSignInTitle from "../../components/RegisterSignInTitle";
 
-const Login = () => {
+const RegisterForm = () => {
   const captchaText = useRef(null);
   const [disable, setDisable] = useState(true);
 
@@ -37,7 +37,6 @@ const Login = () => {
       alert("Captcha Does Not Match");
     }
   }
-
   return (
     <section
       className=""
@@ -59,7 +58,7 @@ const Login = () => {
 
             {/* form box */}
             <div className="card  shadow-2xl bg-base-100 w-1/2">
-              <RegisterSignInTitle title="Login" />
+             <RegisterSignInTitle title="Register" />
               <form onSubmit={handleSubmit} className="card-body">
                 <div className="form-control">
                   <label className="label">
@@ -126,8 +125,10 @@ const Login = () => {
               {/* social login box */}
               <div className="pb-5">
                 <h4 className="text-center mb-3">
-                  <span>New here?</span>
-                  <Link className="underline ml-3 text-blue" to="/register">Create a New Account</Link>
+                  <span>Already registered?</span>
+                  <Link className="underline ml-3 text-blue" to="/login">
+                    Go to log in
+                  </Link>
                 </h4>
                 <div className="signSocialBox flex flex-col justify-center items-center gap-3">
                   <h4>Or sign in with</h4>
@@ -205,4 +206,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RegisterForm;
