@@ -22,6 +22,11 @@ const OurShop = () => {
   const salad = menu.filter((data) => data.category === "salad");
   const soup = menu.filter((data) => data.category === "soup");
 
+
+  if(loading) {
+    return <div>loading...</div>
+  }
+
   return (
     <section>
       <Helmet>

@@ -27,7 +27,7 @@ const loginUser = (email, password)=> {
 }
 
 
-const LogOutUser = (auth) => {
+const LogOutUser = () => {
     setLoading(true)
     return signOut(auth)
 }
@@ -43,6 +43,7 @@ const LogOutUser = (auth) => {
         setLoading(false);
       }else{
         console.log("not found current user")
+        setLoading(false);
       }
     });
 
@@ -57,7 +58,8 @@ const LogOutUser = (auth) => {
     loading,
     registerUser,
     loginUser,
-    LogOutUser
+    LogOutUser,
+    setUser
   };
 
   return (

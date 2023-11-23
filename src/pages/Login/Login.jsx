@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import fetchedImgSrc from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import authLoingImg from "../../assets/others/authentication2.png";
 
@@ -9,32 +9,47 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import RegisterSignInTitle from "../../components/RegisterSignInTitle";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Login = () => {
-  const captchaText = useRef(null);
+  const {user, loading, loginUser, setUser} = useContext(AuthContext);
   const [disable, setDisable] = useState(true);
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  let from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ email, password });
+    loginUser(email, password)
+    .then((result)=> {
+      const user = result?.user;
+      console.log({loginUser: user})
+      navigate(from, {replace: true})
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setUser(false)
+      console.log(errorMessage, errorCode)
+      // ..
+    });
   };
 
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
 
-  function handleValidatedCaptcha() {
-    const user_captcha_value = captchaText.current.value;
-    if (validateCaptcha(user_captcha_value) == true) {
-      captchaText.current.value = "";
-      setDisable(false);
-    } else {
+  function handleValidatedCaptcha(e) {
+    const user_captcha_value = e.target.value;
+    if (validateCaptcha(user_captcha_value) == false) {
       setDisable(true);
-      alert("Captcha Does Not Match");
+    } else {
+      setDisable(false);
     }
   }
 
@@ -100,17 +115,12 @@ const Login = () => {
                   <div className="flex items-center justify-between gap-1">
                     <input
                       type="text"
-                      ref={captchaText}
+                      onBlur={handleValidatedCaptcha}
                       placeholder="Write Captcha text"
                       className="input input-bordered flex-1"
                       required
                     />
-                    <button
-                      onClick={handleValidatedCaptcha}
-                      className="btn btn-primary"
-                    >
-                      Validate
-                    </button>
+                   
                   </div>
                 </div>
 
@@ -204,5 +214,4 @@ const Login = () => {
     </section>
   );
 };
-
 export default Login;

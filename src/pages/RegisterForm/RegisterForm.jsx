@@ -1,19 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import fetchedImgSrc from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import authLoingImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form"
-
-
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
-  validateCaptcha,
-} from "react-simple-captcha";
 import { Link } from "react-router-dom";
 import RegisterSignInTitle from "../../components/RegisterSignInTitle";
+import { AuthContext } from "../../context/AuthProvider";
+
 
 const RegisterForm = () => {
+    const {registerUser} = useContext(AuthContext)
     const {
         register,
         handleSubmit,
@@ -23,6 +18,11 @@ const RegisterForm = () => {
     
       const onSubmit = (data) => {
         console.log(data)
+        registerUser(data.email, data.password)
+        .then((result)=> {
+            const user = result?.user;
+            console.log({registerUser: user})
+        })
       }
  
   return (
@@ -89,9 +89,9 @@ const RegisterForm = () => {
                     required
                     {...register("password", {minLength: 6, maxLength: 20, pattern: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/})}
                   />
-                  <p>{errors?.password?.type == "minLength" &&  <span>PassWord Must Have  6 charecters</span>}</p>
-                  <p>{errors?.password?.type == "maxLength" &&  <span>PassWord Must Have  20 charecters</span>}</p>
-                  <p>{errors?.password?.type == "pattern" &&  <span>PassWord at least 1 uppercase, one lower case, one digit, one special character, </span>}</p>
+                  <p className="text-[red]">{errors?.password?.type == "minLength" &&  <span>password Must Have  6 charecters</span>}</p>
+                  <p className="text-[red]">{errors?.password?.type == "maxLength" &&  <span>password Must Have  20 charecters</span>}</p>
+                  <p className="text-[red]">{errors?.password?.type == "pattern" &&  <span>password at least 1 uppercase, one lower case, one digit, one special character, </span>}</p>
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
                       Forgot password?

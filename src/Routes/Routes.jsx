@@ -9,6 +9,7 @@ import Menu from "../pages/Menu/Menu/Menu";
 import OurShop from "../pages/OurShop/OurShop/OurShop";
 import Login from "../pages/Login/Login";
 import RegisterForm from "../pages/RegisterForm/RegisterForm";
+import PrivateRoutes from "./PrivateRoutes";
 
 
  export const router = createBrowserRouter([
@@ -26,7 +27,7 @@ import RegisterForm from "../pages/RegisterForm/RegisterForm";
           },
           {
             path: 'ourShop/:category',
-            element: <OurShop/>
+            element: <PrivateRoutes><OurShop/></PrivateRoutes>
           }, 
           {
             path: '/login',

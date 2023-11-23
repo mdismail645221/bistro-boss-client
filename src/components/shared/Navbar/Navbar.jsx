@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import cartIcon from '../../../assets/images/cart.png';
 import logo from '../../../assets/images/logo.png'
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Navbar = () => {
 
+  const {user, loading, LogOutUser} = useContext(AuthContext);
+
+  function handleLogOut () {
+    console.log("click")
+    LogOutUser()
+    .then(()=> {
+      console.log("successfully logOut")
+    })
+    .catch((error)=> {
+      console.log(error.message)
+    })
+  }
 
   const items = <>
     <ul className="menu menu-horizontal px-1 items-center">
@@ -15,6 +28,7 @@ const Navbar = () => {
       <li><a className="text-[#000] uppercase " href="/ourShop/popular">Our Shop</a></li>
       <li><a className="text-[#000] uppercase " href="/login">Login</a></li>
       <li><a className="text-[#000] uppercase " href="/register">Register</a></li>
+      <li><button onClick={()=> handleLogOut()}>LogOut</button></li>
       <li><a className="text-[#000] uppercase " href="/"><img src={cartIcon} alt={cartIcon} /></a></li>
     </ul>
   </>
