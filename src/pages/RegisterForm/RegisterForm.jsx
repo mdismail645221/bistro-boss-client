@@ -89,9 +89,9 @@ const RegisterForm = () => {
                     required
                     {...register("password", {minLength: 6, maxLength: 20, pattern: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/})}
                   />
-                  <p className="text-[red]">{errors?.password?.type == "minLength" &&  <span>password Must Have  6 charecters</span>}</p>
-                  <p className="text-[red]">{errors?.password?.type == "maxLength" &&  <span>password Must Have  20 charecters</span>}</p>
-                  <p className="text-[red]">{errors?.password?.type == "pattern" &&  <span>password at least 1 uppercase, one lower case, one digit, one special character, </span>}</p>
+                  {errors?.password?.type == "minLength" &&  <span className="text-[red]">password Must Have  6 charecters</span>}
+                  {errors?.password?.type == "maxLength" &&  <span className="text-[red]">password Must Have  20 charecters</span>}
+                  {errors?.password?.type == "pattern" &&  <span className="text-[red]">password at least 1 uppercase, one lower case, one digit, one special character, </span>}
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
                       Forgot password?

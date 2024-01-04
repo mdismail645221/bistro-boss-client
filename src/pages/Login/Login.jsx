@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import fetchedImgSrc from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import authLoingImg from "../../assets/others/authentication2.png";
+import swal from 'sweetalert';
 
 import {
   loadCaptchaEnginge,
@@ -20,6 +21,22 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
 
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+const [recaphaValue, setRecaphaValue] = useState('')
+
+  function handleValidatedCaptcha(e) {
+    const user_captcha_value = e.target.value;
+    if (validateCaptcha(recaphaValue) == false) {
+      setDisable(true);
+    } else {
+      setDisable(false);
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -29,6 +46,7 @@ const Login = () => {
     .then((result)=> {
       const user = result?.user;
       console.log({loginUser: user})
+      swal("LOGIN SUCCESSFULLY DONE!!");
       navigate(from, {replace: true})
     })
     .catch((error) => {
@@ -40,18 +58,7 @@ const Login = () => {
     });
   };
 
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
 
-  function handleValidatedCaptcha(e) {
-    const user_captcha_value = e.target.value;
-    if (validateCaptcha(user_captcha_value) == false) {
-      setDisable(true);
-    } else {
-      setDisable(false);
-    }
-  }
 
   return (
     <section
@@ -109,17 +116,18 @@ const Login = () => {
                 {/* capcha load  */}
                 <div className="form-control flex">
                   <label className="label">
-                    <LoadCanvasTemplate />
+                    <LoadCanvasTemplateNoReload />
                   </label>
 
-                  <div className="flex items-center justify-between gap-1">
+                  <div className="flex items-center justify-between gap-3">
                     <input
                       type="text"
-                      onBlur={handleValidatedCaptcha}
+                      onChange={(e)=> setRecaphaValue(e.target.value)}
                       placeholder="Write Captcha text"
                       className="input input-bordered flex-1"
                       required
                     />
+                    <span onClick={handleValidatedCaptcha} className="btn">Validate</span>
                    
                   </div>
                 </div>

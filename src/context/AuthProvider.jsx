@@ -3,12 +3,14 @@ import { createContext } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 
+
+
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("RAJU");
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
 
@@ -36,20 +38,13 @@ const LogOutUser = () => {
 
   // continously check current user 
   useEffect(() => {
-    const unsubcribes = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        console.log("current User", currentUser);
-        setLoading(false);
-      }else{
-        console.log("not found current user")
-        setLoading(false);
-      }
+    const unSUbscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
     });
+    return () => unSUbscribe();
+  });
 
-    return () => unsubcribes()
-
-  }, []);
 
 
 // all info 

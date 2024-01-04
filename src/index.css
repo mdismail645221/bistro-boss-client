@@ -17,6 +17,12 @@
     padding: 60px 0px;
 }
 
+
+.section-pb{
+    padding-bottom: 60px;
+}
+
+
 body {
     font-family: Helvetica, sans-serif;
 }

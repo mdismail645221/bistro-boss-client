@@ -10,6 +10,7 @@ import OurShop from "../pages/OurShop/OurShop/OurShop";
 import Login from "../pages/Login/Login";
 import RegisterForm from "../pages/RegisterForm/RegisterForm";
 import PrivateRoutes from "./PrivateRoutes";
+import ContactUsPage from "../pages/contactUs/ContactUs";
 
 
  export const router = createBrowserRouter([
@@ -20,6 +21,10 @@ import PrivateRoutes from "./PrivateRoutes";
           {
             path: '/',
             element: <Home/>
+          },
+          {
+            path: '/contact',
+            element: <ContactUsPage/>
           },
           {
             path: '/menu',
