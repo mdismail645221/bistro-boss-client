@@ -11,6 +11,8 @@ import Login from "../pages/Login/Login";
 import RegisterForm from "../pages/RegisterForm/RegisterForm";
 // import PrivateRoutes from "./PrivateRoutes";
 import ContactUsPage from "../pages/contactUs/ContactUs";
+import MyCart from "../pages/DashBoard/MyCart";
+import DashBoard from "../pages/DashBoard/DashBoard";
 
 
  export const router = createBrowserRouter([
@@ -43,5 +45,16 @@ import ContactUsPage from "../pages/contactUs/ContactUs";
             element: <RegisterForm/>
           }
         ]
+    },
+    {
+      path: "/deshboard",
+      element: <DashBoard></DashBoard>,
+      children: [
+        {
+          path: "/deshboard/myCart",
+          element: <MyCart></MyCart>,
+          errorElement: <div>NOT FOUND</div>
+        }
+      ]
     }
   ]) 

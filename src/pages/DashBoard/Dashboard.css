@@ -1,0 +1,9 @@
+.deshboard_menu_items li a{
+    text-transform: uppercase;
+
+}
+
+.deshboard_menu_items li a.active {
+    background-color:  black;
+    color: #fff;
+}

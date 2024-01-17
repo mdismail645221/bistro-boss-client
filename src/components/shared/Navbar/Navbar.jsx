@@ -6,12 +6,14 @@ import { AuthContext } from "../../../context/AuthProvider";
 import swal from "sweetalert";
 
 import { FaCartArrowDown } from "react-icons/fa6";
+import useCart from "../../../hooks/useCart";
 
 
 const Navbar = () => {
   const { user, loading, LogOutUser } = useContext(AuthContext);
+  const [cart, refetch, isLoading] = useCart()
 
-  console.log({ currentUser: user });
+  refetch()
 
   const handleSignOut = () => {
     LogOutUser()
@@ -77,7 +79,7 @@ const Navbar = () => {
           <a href="/#">
             <button className="flex items-center gap-3">
               <FaCartArrowDown width="150px" />
-              <div className="badge badge-secondary">+99</div>
+              <div className="badge badge-secondary">+{cart?.length}</div>
             </button>
           </a>
         </li>
@@ -92,7 +94,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 items-center justify-between">
+    <div className="navbar bg-base-100 items-center justify-between fixed z-50">
       <div className="">
         <a to="/">
           <img src={logo} className="w-[70px] h-[70px]" alt="logo" />
