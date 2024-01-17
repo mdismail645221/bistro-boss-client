@@ -1,14 +1,17 @@
-import { FaHome } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import './Dashboard.css'
+import './style/Dashboard.css'
 import MyCart from "./MyCart";
+import { Helmet } from "react-helmet";
 
 const DashBoard = () => {
   return (
     <div>
+        <Helmet>
+            <title>Dashboard</title>
+        </Helmet>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content ">
           {/* Page content here */}
 
           <div>
@@ -33,7 +36,7 @@ const DashBoard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content bg-[#D1A054] text-[#fff] deshboard_menu_items">
+          <ul className="deshboard_menu_items menu p-4 w-80 min-h-full bg-base-200 text-base-content bg-[#D1A054] text-[#fff]">
             {/* Sidebar content here */}
             <div className="sidebar-logo-wrapper flex flex-col items-center py-16 px-3">
               <h3 className="text-[#fff]">BISTRO BOSS</h3>
@@ -168,7 +171,7 @@ const DashBoard = () => {
             </li>
             <div className="divider"></div>
             <li>
-              <NavLink to="/home">
+              <NavLink to="/">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

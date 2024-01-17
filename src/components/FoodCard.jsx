@@ -20,6 +20,7 @@ const FoodCard = ({ product }) => {
         price,
         recipe,
         email: user?.email,
+        image
       };
       fetch("http://localhost:5000/cart", {
         method: "POST",
