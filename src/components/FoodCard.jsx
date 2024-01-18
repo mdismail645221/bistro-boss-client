@@ -35,8 +35,8 @@ const FoodCard = ({ product }) => {
             refetch()
             Swal.fire({
               position: "center",
-              icon: "added to the cart successfully",
-              title: "Your work has been saved",
+              icon: "success",
+              title: "Added Successfully",
               showConfirmButton: false,
               timer: 1500,
             });

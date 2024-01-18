@@ -8,6 +8,7 @@ import ProductTab from "../../../components/ProductTab";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Loading from "../../../components/Loading";
+import Loader from "../../../components/Loader";
 
 const OurShop = () => {
   const categoires = ["popular", "dessert", "pizza", "salad", "soup"];
@@ -24,7 +25,7 @@ const OurShop = () => {
 
 
   if(loading) {
-    return <div>loading...</div>
+    return <Loader type="loaderOne" />
   }
 
   return (
