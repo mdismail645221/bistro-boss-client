@@ -1,26 +1,23 @@
 import { NavLink } from "react-router-dom";
-import './style/Dashboard.css'
+import "./style/Dashboard.css";
 import MyCart from "./MyCart";
 import { Helmet } from "react-helmet";
+import useCart from "../../hooks/useCart";
 
 const DashBoard = () => {
+  const [cart] = useCart()
   return (
     <div>
-        <Helmet>
-            <title>Dashboard</title>
-        </Helmet>
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
           {/* Page content here */}
 
           <div>
-
-
-            <MyCart/>
-
-
-
+            <MyCart />
           </div>
 
           <label
@@ -169,6 +166,45 @@ const DashBoard = () => {
                 all userss
               </NavLink>
             </li>
+            <li className="flex-row">
+              <NavLink to="/dashboard/mycart">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_42_554)">
+                    <path
+                      d="M10.5938 23.7512C11.7587 23.7512 12.7031 22.8068 12.7031 21.6418C12.7031 20.4769 11.7587 19.5325 10.5938 19.5325C9.42877 19.5325 8.48438 20.4769 8.48438 21.6418C8.48438 22.8068 9.42877 23.7512 10.5938 23.7512Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M17.6719 23.7512C18.8369 23.7512 19.7812 22.8068 19.7812 21.6418C19.7812 20.4769 18.8369 19.5325 17.6719 19.5325C16.5069 19.5325 15.5625 20.4769 15.5625 21.6418C15.5625 22.8068 16.5069 23.7512 17.6719 23.7512Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M0.703121 4.06376H3.63528L7.02985 15.9471L6.7636 16.4796C6.06254 17.8802 7.08024 19.5324 8.6505 19.5324H20.4843C20.8729 19.5324 21.1874 19.2179 21.1874 18.8293C21.1874 18.4407 20.8729 18.1262 20.4843 18.1262H8.6505C8.12836 18.1262 7.78711 17.5764 8.02153 17.1086L8.21587 16.7199H20.4843C20.798 16.7199 21.0741 16.5119 21.1606 16.2098L23.9731 6.36606C24.0335 6.1539 23.991 5.9259 23.8584 5.74947C23.7252 5.57369 23.5172 5.47 23.2968 5.47H5.49948L4.84169 3.16766C4.75516 2.86555 4.47916 2.65747 4.16533 2.65747H0.703121C0.314483 2.65747 0 2.97195 0 3.36059C0 3.74923 0.314483 4.06376 0.703121 4.06376Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_42_554">
+                      <rect
+                        width="24"
+                        height="24"
+                        fill="white"
+                        transform="translate(0 0.699463)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+                 My Cart
+                <span className="badge badge-secondary">+{cart?.length}</span>
+              </NavLink>
+               
+            </li>
             <div className="divider"></div>
             <li>
               <NavLink to="/">
@@ -264,6 +300,7 @@ const DashBoard = () => {
                 CONTACT
               </NavLink>
             </li>
+            
           </ul>
         </div>
       </div>

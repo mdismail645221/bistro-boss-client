@@ -93,15 +93,17 @@ const Navbar = () => {
     </>
   );
 
+  
+
   return (
-    <div className="navbar bg-base-100 items-center justify-between fixed z-50">
+    <header className="navbar bg-base-100 items-center justify-between z-50">
       <div className="">
         <a to="/">
           <img src={logo} className="w-[70px] h-[70px]" alt="logo" />
         </a>
       </div>
       <div className="flex-none">{items}</div>
-    </div>
+    </header>
   );
 };
 

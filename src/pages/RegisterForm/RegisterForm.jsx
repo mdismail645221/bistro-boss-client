@@ -2,13 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import fetchedImgSrc from "../../assets/reservation/wood-grain-pattern-gray1x.png";
 import authLoingImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegisterSignInTitle from "../../components/RegisterSignInTitle";
 import { AuthContext } from "../../context/AuthProvider";
+import Swal from "sweetalert2";
+
 
 
 const RegisterForm = () => {
     const {registerUser} = useContext(AuthContext)
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -21,7 +24,29 @@ const RegisterForm = () => {
         registerUser(data.email, data.password)
         .then((result)=> {
             const user = result?.user;
-            console.log({registerUser: user})
+            const userInfo = {name: user?.displayName, email: user?.email, uid: user?.uid}
+            // cooking updated profile name and profile image code 
+            fetch('http://localhost:5000/users', {
+              method: "POST",
+              headers: {
+                'content-type': 'application-json'
+              },
+              body: JSON.stringify(userInfo)
+            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+              Swal.fire({
+                title: "Registered is Successfully",
+                icon: "success"
+              })
+              .then(result => {
+                if(result.isConfirmed){
+                  navigate('/')
+                }
+              })
+            })
+
         })
       }
  
