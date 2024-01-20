@@ -12,7 +12,8 @@ import RegisterForm from "../pages/RegisterForm/RegisterForm";
 // import PrivateRoutes from "./PrivateRoutes";
 import ContactUsPage from "../pages/contactUs/ContactUs";
 import MyCart from "../pages/DashBoard/MyCart";
-import DashBoard from "../pages/DashBoard/DashBoard";
+import DashBoard from "../layout/DashBoard";
+import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 
 
  export const router = createBrowserRouter([
@@ -33,7 +34,7 @@ import DashBoard from "../pages/DashBoard/DashBoard";
             element: <Menu/>
           },
           {
-            path: 'ourShop/:category',
+            path: '/ourShop/:category',
             element: <OurShop/>
           }, 
           {
@@ -47,13 +48,17 @@ import DashBoard from "../pages/DashBoard/DashBoard";
         ]
     },
     {
-      path: "/deshboard",
+      path: "deshboard",
       element: <DashBoard></DashBoard>,
       children: [
         {
-          path: "/deshboard/myCart",
+          path: "mycart",
           element: <MyCart></MyCart>,
           errorElement: <div>NOT FOUND</div>
+        },
+        {
+          path: 'allUsers',
+          element: <AllUsers></AllUsers>
         }
       ]
     }

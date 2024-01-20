@@ -24,28 +24,33 @@ const RegisterForm = () => {
         registerUser(data.email, data.password)
         .then((result)=> {
             const user = result?.user;
-            const userInfo = {name: user?.displayName, email: user?.email, uid: user?.uid}
+
             // cooking updated profile name and profile image code 
-            fetch('http://localhost:5000/users', {
-              method: "POST",
-              headers: {
-                'content-type': 'application-json'
-              },
-              body: JSON.stringify(userInfo)
-            })
-            .then(res => res.json())
-            .then(data => {
-              console.log(data)
-              Swal.fire({
-                title: "Registered is Successfully",
-                icon: "success"
+          
+
+            if(user){
+              const userInfo = {name: data?.name, email: data?.email, uid: result?.user?.uid}
+              fetch('http://localhost:5000/users', {
+                method: "POST",
+                headers: {
+                  'content-type': 'application/json'
+                },
+                body: JSON.stringify(userInfo)
               })
-              .then(result => {
-                if(result.isConfirmed){
-                  navigate('/')
-                }
+              .then(res => res.json())
+              .then(data => {
+                console.log(data)
+                Swal.fire({
+                  title: "Registered is Successfully",
+                  icon: "success"
+                })
+                .then(result => {
+                  if(result.isConfirmed){
+                    navigate('/')
+                  }
+                })
               })
-            })
+            }
 
         })
       }
