@@ -15,11 +15,21 @@ const AuthSocialIcons = () => {
       .then((result) => {
         const user = result?.user;
         if (user) {
-          swal({
-            title: "Login Successfully",
-            icon: "success",
-          });
-          navigate(from, { replace: true });
+          fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+              'content-type': 'Application/json'
+            },
+            body: JSON.stringify(user)
+          })
+          .then(res => res.json)
+          .then(data => {
+            swal({
+              title: "Login Successfully",
+              icon: "success",
+            });
+            navigate(from, { replace: true });
+          })
         }
       })
       .catch(console.error());

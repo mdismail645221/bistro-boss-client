@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet";
 import SectionTitle from "../../../components/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaUserAltSlash } from "react-icons/fa";
+import Loader from "../../../components/Loader";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
 
@@ -15,9 +17,58 @@ const AllUsers = () => {
           return res.json();
         }
       });
+
+
+      const handleMakeAdmin = (user) => {
+        console.log(user?._id)
+          fetch(`http://localhost:5000/users/admin/${user?._id}`, {
+            method: 'PATCH'
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(data.modifiedCount){
+              refetch()
+              Swal.fire({
+                title: `${user?.email} made an Admin Now! 😍🤞`,
+                icon: 'success'
+              })
+            }
+          })
+      }
+
+
+      const handleDeleteCart = (user) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`http://localhost:5000/users/${user?._id}`, {
+              method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+              if(data.deletedCount > 0){
+                refetch()
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+              }
+            })
+          }
+        });
+      }
     
       if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader type="ballTriangle"></Loader>;
       }
 
     return (
@@ -69,7 +120,7 @@ const AllUsers = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allUsers.map((item, index) => (
+                    {allUsers.map((user, index) => (
                       <tr>
                         <th>
                           <span className="cart_index">{index + 1}</span>
@@ -77,21 +128,21 @@ const AllUsers = () => {
                         <td>
                           <div className="flex items-center gap-3">
                             <span className="allUser_name">
-                                {item?.name}
+                                {user?.name}
                             </span>
                           </div>
                         </td>
                         <td>
-                          <span className="allUser_food_name">{item?.email}</span>
+                          <span className="allUser_food_name">{user?.email}</span>
                         </td>
     
                         <td>
-                          <button className="allUser_edit_btn">
-                            <FaEdit />
+                          <button onClick={()=> handleMakeAdmin(user)} className="allUser_edit_btn">
+                            {user?.role === 'admin' ? 'admin' : <FaUserAltSlash></FaUserAltSlash>}
                           </button>
                         </td>
                         <td>
-                          <button onClick={()=> handleDeleteCart(item)} className="allUser_FaTrashAlt_btn bg-error hover:bg-gray-dark p-3 text-[18px] text-[#fff]">
+                          <button onClick={()=> handleDeleteCart(user)} className="allUser_FaTrashAlt_btn bg-error hover:bg-gray-dark p-3 text-[18px] text-[#fff]">
                             <FaTrashAlt />
                           </button>
                         </td>
