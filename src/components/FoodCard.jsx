@@ -26,6 +26,7 @@ const FoodCard = ({ product }) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          'athorization': menuItems.email,
         },
         body: JSON.stringify(menuItems),
       })

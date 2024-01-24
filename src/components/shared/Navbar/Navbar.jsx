@@ -10,6 +10,7 @@ import useCart from "../../../hooks/useCart";
 
 
 const Navbar = () => {
+
   const { user, loading, LogOutUser } = useContext(AuthContext);
   const [cart, refetch, isLoading] = useCart()
 
@@ -18,12 +19,17 @@ const Navbar = () => {
   const handleSignOut = () => {
     LogOutUser()
       .then(() => {
-        swal("successfully logout done");
+        swal({
+          title:  "Logout Successfully done",
+          icon: 'success'
+        });
       })
       .catch((error) => {
         // An error happened.
-
-        swal("logout in internal error");
+        swal({
+          title: `${error?.message}`,
+          icon: 'warning'
+        });
       });
   };
 
@@ -76,12 +82,12 @@ const Navbar = () => {
         )}
 
         <li>
-          <a href="/#">
+          <Link to='/deshboard/myCart'>
             <button className="flex items-center gap-3">
               <FaCartArrowDown width="150px" />
               <div className="badge badge-secondary">+{cart?.length}</div>
             </button>
-          </a>
+          </Link>
         </li>
 
         <li>
