@@ -2,12 +2,17 @@ import { NavLink, Outlet } from "react-router-dom";
 import "../pages/DashBoard/style/Dashboard.css";
 import { Helmet } from "react-helmet";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
 
   //TODO ALL USER ROLE IMPLEMENT
-  const isAdmin = true;
+  // const isAdmin = true;
+
+  const [isAdmin, isAdminLoading] = useAdmin();
+ console.log('isAdmin deshbaord', isAdmin)
+  
 
   return (
     <div>

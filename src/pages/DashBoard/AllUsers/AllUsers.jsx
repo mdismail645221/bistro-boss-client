@@ -4,17 +4,17 @@ import { useQuery } from "@tanstack/react-query";
 import { FaEdit, FaTrashAlt, FaUserAltSlash } from "react-icons/fa";
 import Loader from "../../../components/Loader";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
+
+  const axiosSecure =  useAxiosSecure();
 
     const { data: allUsers = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-          const res = await fetch("http://localhost:5000/users");
-          if (!res.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return res.json();
+          const res = await axiosSecure.get('/users');
+          return res.data
         }
       });
 
@@ -121,7 +121,7 @@ const AllUsers = () => {
                   </thead>
                   <tbody>
                     {allUsers.map((user, index) => (
-                      <tr>
+                      <tr key={user?._id}>
                         <th>
                           <span className="cart_index">{index + 1}</span>
                         </th>

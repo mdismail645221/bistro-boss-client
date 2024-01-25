@@ -1,17 +1,16 @@
-import React, { useContext } from "react";
 import cartIcon from "../../../assets/images/cart.png";
 import logo from "../../../assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../context/AuthProvider";
 import swal from "sweetalert";
 
 import { FaCartArrowDown } from "react-icons/fa6";
 import useCart from "../../../hooks/useCart";
+import useAuth from "../../../hooks/useAuth";
 
 
 const Navbar = () => {
 
-  const { user, loading, LogOutUser } = useContext(AuthContext);
+  const { user, loading, LogOutUser } = useAuth()
   const [cart, refetch, isLoading] = useCart()
 
   refetch()

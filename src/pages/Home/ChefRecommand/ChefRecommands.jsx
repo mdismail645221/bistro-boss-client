@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle";
 import ChefRecommand from "./ChefRecommand";
 import useMenu from "../../../hooks/useMenu";
+import Loader from "../../../components/Loader";
 
 const ChefRecommands = () => {
   const [data, loading] =useMenu();
   const product = data.filter(item => item.category === "popular")
 
   if(loading) {
-    return <div>Loading...</div>
+    return <Loader type="ballTriangle"></Loader>
   }
 
   return (
