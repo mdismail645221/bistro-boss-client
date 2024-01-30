@@ -73,7 +73,7 @@ const DashBoard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/addItems">
+                  <NavLink to="/deshboard/addItem">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

@@ -17,6 +17,15 @@ const OurShop = () => {
 
   const [tabIndex, setTabIndex] = useState(initialValue);
   const [menu, loading] = useMenu();
+
+
+
+  if(loading){
+    return <Loader type="threeDots"></Loader>
+  }
+
+
+
   const popular = menu.filter((data) => data.category === "popular");
   const dessert = menu.filter((data) => data.category === "dessert");
   const pizza = menu.filter((data) => data.category === "pizza");

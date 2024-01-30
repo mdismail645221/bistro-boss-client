@@ -81,14 +81,14 @@ const AllUsers = () => {
           <SectionTitle
             color="#000"
             subHeading={"Hurry Up!"}
-            mainHeading={"MANAGE ALL ITEMS"}
+            mainHeading={"ALL USERS"}
           />
           <div className="allUser_body_wrapper">
             {/* cart length count title */}
-            <div className="total-mycart-length flex justify-evenly items-center">
+            <div className="total-mycart-length flex justify-center items-center">
               <div>
                 <h3 className="total-mycart-title uppercase">
-                  Total items:{" "}
+                  Total Users:{" "}
                   {allUsers.length < 10 ? <>0{allUsers.length}</> : <>{allUsers.length}</>}
                 </h3>
               </div>
@@ -96,9 +96,6 @@ const AllUsers = () => {
                 <h3 className="total-mycart-title uppercase">
                   {/* Total Price: {total} */}
                 </h3>
-              </div>
-              <div>
-                <button className="btn btn-primary btn-md">BUY NOW</button>
               </div>
             </div>
   
