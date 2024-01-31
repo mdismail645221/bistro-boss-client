@@ -94,7 +94,7 @@ const DashBoard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="manageItems">
+                  <NavLink to="allItems">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

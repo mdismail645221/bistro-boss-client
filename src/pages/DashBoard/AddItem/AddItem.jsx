@@ -80,15 +80,8 @@ const AddItem = () => {
               />
             </div>
           </div>
+          {errors.name && <p className="text-[red]">{errors.name?.message}</p>}
           
-          <ErrorMessage errors={errors} name="name" />
-          <ErrorMessage
-        errors={errors}
-        name="name"
-        render={({ message }) => <p>{message}</p>}
-      />
-
-
           
           {/* recipe box wrapper inder the category and price feild */}
           <div className="recepe_box flex justify-between">
@@ -131,22 +124,8 @@ const AddItem = () => {
               </div>
             </div>
           </div>
+          {errors.category || errors.price ? <p className="text-[red]">{errors.category?.message} {errors.price?.message}</p> : ""}
 
-    <ErrorMessage errors={errors} name="category" />
-    <ErrorMessage
-        errors={errors}
-        name="category"
-        render={({ message }) => <p>{message}</p>}
-      />
-       <ErrorMessage errors={errors} name="price" />
-    <ErrorMessage
-        errors={errors}
-        name="price"
-        render={({ message }) => <p>{message}</p>}
-      />
-
-
-        
           {/*  Recipe Details* field */}
           <div className="Recipe_details">
             <div className="recipe_details_label">
@@ -170,14 +149,8 @@ const AddItem = () => {
             </div>
           </div>
 
+          {errors.recipe && <p className="text-[red]">{errors.recipe?.message}</p>}
 
-          <ErrorMessage errors={errors} name="recipe" />
-
-          <ErrorMessage
-        errors={errors}
-        name="recipe"
-        render={({ message }) => <p>{message}</p>}
-      />
 
 
 
@@ -193,16 +166,11 @@ const AddItem = () => {
             </label>
           </div>
 
+          {errors.imageFile && <p className="text-[red]">{errors.imageFile?.message}</p>}
 
 
 
 
-          <ErrorMessage errors={errors} name="imageFiles" />
-          <ErrorMessage
-        errors={errors}
-        name="imageFiles"
-        render={({ message }) => <p>{message}</p>}
-      />
 
 
 
