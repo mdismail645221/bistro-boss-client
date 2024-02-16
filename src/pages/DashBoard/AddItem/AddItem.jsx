@@ -1,13 +1,13 @@
 import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle";
-import { ErrorMessage } from "@hookform/error-message"
+import { ErrorMessage } from "@hookform/error-message";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import "./addItem.css";
 import { useForm } from "react-hook-form";
 
 const AddItem = () => {
   const apiKey = import.meta.env.VITE_IMAGE_UPLOADED_TOKEN;
-  const axios = useAxiosSecure()
+  const axios = useAxiosSecure();
   // console.log(imageToken)
   const {
     register,
@@ -30,26 +30,34 @@ const AddItem = () => {
       .then((imageResponse) => {
         const imageURL = imageResponse?.data?.image?.url;
         data.image = imageURL;
-        const {name, recipe, image, category, price} = data; 
-        const menuItems = {name,recipe,image, category, price: parseFloat(price)};
-        console.log({menuItems})
+        const { name, recipe, image, category, price } = data;
+        const menuItems = {
+          name,
+          recipe,
+          image,
+          category,
+          price: parseFloat(price),
+        };
+        console.log({ menuItems });
         axios.post(`/menu`, menuItems)
-        .then(data => {
-            if(data.data.insertedId){
-                reset()
-                Swal.fire({
-                    title:  "Added Menu Item Successfully",
-                    icon: 'success'
-                })
+          .then((data) => {
+            if (data.data.insertedId) {
+              reset();
+              Swal.fire({
+                title: "Added Menu Item Successfully",
+                icon: "success",
+              });
             }
-        })
-        .catch((error)=> {
-            Swal.fire({
-                icon: error,
-                title: `${error.message}`
-            })
-        })
-         
+          })
+          // .catch((error) => {
+          //   console.log({ error });
+          //   Swal.fire({
+          //     icon: "error",
+          //     title: "Oops...",
+          //     icon: error,
+          //     text: `${error.message}`,
+          //   });
+          // });
       });
   };
 
@@ -81,8 +89,7 @@ const AddItem = () => {
             </div>
           </div>
           {errors.name && <p className="text-[red]">{errors.name?.message}</p>}
-          
-          
+
           {/* recipe box wrapper inder the category and price feild */}
           <div className="recepe_box flex justify-between">
             {/* Category field */}
@@ -124,7 +131,13 @@ const AddItem = () => {
               </div>
             </div>
           </div>
-          {errors.category || errors.price ? <p className="text-[red]">{errors.category?.message} {errors.price?.message}</p> : ""}
+          {errors.category || errors.price ? (
+            <p className="text-[red]">
+              {errors.category?.message} {errors.price?.message}
+            </p>
+          ) : (
+            ""
+          )}
 
           {/*  Recipe Details* field */}
           <div className="Recipe_details">
@@ -149,11 +162,9 @@ const AddItem = () => {
             </div>
           </div>
 
-          {errors.recipe && <p className="text-[red]">{errors.recipe?.message}</p>}
-
-
-
-
+          {errors.recipe && (
+            <p className="text-[red]">{errors.recipe?.message}</p>
+          )}
 
           {/* recipe file upload field */}
           <div className="recipe_file_upload-feild">
@@ -166,14 +177,9 @@ const AddItem = () => {
             </label>
           </div>
 
-          {errors.imageFile && <p className="text-[red]">{errors.imageFile?.message}</p>}
-
-
-
-
-
-
-
+          {errors.imageFile && (
+            <p className="text-[red]">{errors.imageFile?.message}</p>
+          )}
 
           {/* recipe add to item btn */}
           <div className="recipe_add_item_btn flex justify-center items-center">

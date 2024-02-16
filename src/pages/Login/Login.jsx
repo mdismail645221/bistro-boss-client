@@ -14,12 +14,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { Helmet } from "react-helmet";
 import AuthSocialIcons from "../../components/AuthSocialIcons";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {user, loading, loginUser, setUser} = useContext(AuthContext);
   const [disable, setDisable] = useState(true);
   const location = useLocation()
   const navigate = useNavigate()
+  const axios = useAxiosSecure(); 
 
   let from = location.state?.from?.pathname || "/";
 
@@ -47,6 +50,34 @@ const [recaphaValue, setRecaphaValue] = useState('')
     loginUser(email, password)
     .then((result)=> {
       const user = result?.user;
+
+   
+      
+        if(user){
+          const userInfo = 
+          {name: user?.displayName, email: user?.email, uid: user?.user?.uid, role: "user"}
+          fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            Swal.fire({
+              title: "Registered is Successfully",
+              icon: "success"
+            })
+            .then(result => {
+              if(result.isConfirmed){
+                navigate('/')
+              }
+            })
+          })
+        }
+
       // console.log({loginUser: user})
       swal({
         title: "Login Successfully",

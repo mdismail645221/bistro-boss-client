@@ -4,6 +4,7 @@ import SectionTitle from "../../components/SectionTitle";
 import "./style/MyCart.css";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -29,20 +30,20 @@ const MyCart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/cart/${item?._id}`, {
-          method: 'DELETE'
+          method: "DELETE",
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          if(data.deletedCount > 0){
-            refetch()
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-          }
-        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -74,7 +75,13 @@ const MyCart = () => {
               </h3>
             </div>
             <div>
-              <button className="btn btn-primary btn-md">BUY NOW</button>
+              {cart.length ? 
+                <Link to="/deshboard/payment">
+                <button className="btn btn-primary btn-md">BUY NOW</button>
+              </Link>
+              :
+              <button disabled className="btn btn-primary btn-md">BUY NOW</button>
+              }
             </div>
           </div>
 
@@ -125,7 +132,10 @@ const MyCart = () => {
                         </button>
                       </td>
                       <td>
-                        <button onClick={()=> handleDeleteCart(item)} className="mycart_FaTrashAlt_btn bg-error hover:bg-gray-dark p-3 text-[18px] text-[#fff]">
+                        <button
+                          onClick={() => handleDeleteCart(item)}
+                          className="mycart_FaTrashAlt_btn bg-error hover:bg-gray-dark p-3 text-[18px] text-[#fff]"
+                        >
                           <FaTrashAlt />
                         </button>
                       </td>

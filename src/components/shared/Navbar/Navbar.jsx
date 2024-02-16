@@ -98,7 +98,6 @@ const Navbar = () => {
     </>
   );
 
-  
 
   return (
     <header className="navbar bg-base-100 items-center justify-between z-50">

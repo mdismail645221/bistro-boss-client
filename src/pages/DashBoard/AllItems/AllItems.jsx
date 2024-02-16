@@ -31,7 +31,7 @@ const AllItems = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
-          }).then((result) => {
+          }).then(async(result) => {
             if (result.isConfirmed) {
                 axios.delete(`/menu/${item?._id}`)
                 .then( data => {

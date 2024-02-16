@@ -29,7 +29,7 @@ const RegisterForm = () => {
           
 
             if(user){
-              const userInfo = {name: data?.name, email: data?.email, uid: result?.user?.uid}
+              const userInfo = {name: data?.name, email: data?.email, uid: result?.user?.uid, role: "user"}
               fetch('http://localhost:5000/users', {
                 method: "POST",
                 headers: {
